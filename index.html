@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contractor Schema Generator: Free LocalBusiness JSON-LD | Build Boosters</title>
+<meta name="description" content="Free, open-source schema markup generator for contractors. Fill in your business details and copy LocalBusiness JSON-LD for roofers, plumbers, HVAC, electricians and more.">
+<link rel="canonical" href="https://buildboostershq.github.io/ContractorSchemaGenerator/">
+<style>
+:root{--main:#0b2440;--a:#f2a20c;--fg:#121a24;--mut:#5b6878;--line:#e4e9ef;--soft:#f3f5f8}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--fg);background:var(--soft)}
+header{background:var(--main);color:#fff}header .w{padding-block:36px}
+.w{max-width:1100px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}
+h1{margin:0 0 8px;font-size:32px;line-height:1.15}header p{margin:0;color:#c4d0de;max-width:62ch}
+header a{color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-block:28px}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
+label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+input,select,textarea{width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+textarea{min-height:70px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hint{color:var(--mut);font-size:13px;margin:4px 0 0}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;margin-top:12px}.chk input{width:auto}
+pre{background:var(--main);color:#e6edf5;border-radius:12px;padding:16px;overflow:auto;font-size:13px;max-height:560px;margin:0}
+button{background:var(--a);color:#16191d;border:0;border-radius:999px;padding:12px 18px;font:700 15px system-ui;cursor:pointer}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+a{color:var(--main);font-weight:700;text-decoration-color:var(--a);text-decoration-thickness:2px}
+footer{padding-block:20px 40px;color:var(--mut);font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="w">
+<h1>Contractor Schema Generator</h1>
+<p>Fill in your business details and copy the LocalBusiness structured data (JSON-LD) for your website. It runs in your browser, so nothing you type is sent anywhere. Free and open source from <a href="https://buildboosters.com">Build Boosters</a>.</p>
+</div></header>
+<main class="w grid">
+<form class="card" id="f" onsubmit="return false">
+<label for="type">Type of business</label>
+<select id="type">
+<option value="RoofingContractor">Roofing contractor</option>
+<option value="Plumber">Plumber</option>
+<option value="HVACBusiness">HVAC company</option>
+<option value="Electrician">Electrician</option>
+<option value="GeneralContractor">General contractor or remodeler</option>
+<option value="HousePainter">Painter</option>
+<option value="Locksmith">Locksmith</option>
+<option value="MovingCompany">Moving company</option>
+<option value="HomeAndConstructionBusiness">Other home service (landscaping, pressure washing, handyman)</option>
+</select>
+<label for="name">Business name</label><input id="name" value="Ruiz Roofing">
+<label for="desc">Short description</label><textarea id="desc">Roof repair, roof replacement and storm damage repair for homeowners in Miami-Dade County.</textarea>
+<div class="row"><div><label for="url">Website</label><input id="url" type="url" value="https://www.example-roofing.com"></div><div><label for="phone">Phone</label><input id="phone" value="+1-305-555-0142"></div></div>
+<label for="logo">Logo or photo URL</label><input id="logo" type="url" placeholder="https://...">
+<label class="chk"><input type="checkbox" id="sab"> I serve customers at their address and don't show a street address</label>
+<div id="addr">
+<label for="street">Street address</label><input id="street" value="123 Main St">
+</div>
+<div class="row"><div><label for="city">City</label><input id="city" value="Miami"></div><div><label for="state">State</label><input id="state" value="FL"></div></div>
+<div class="row"><div><label for="zip">ZIP code</label><input id="zip" value="33101"></div><div><label for="price">Price range</label><input id="price" placeholder="$$"></div></div>
+<label for="areas">Towns you serve</label><input id="areas" value="Miami, Coral Gables, Hialeah, Doral">
+<p class="hint">Separate towns with commas.</p>
+<label for="services">Services</label><textarea id="services">Roof repair, Roof replacement, Storm damage repair, Roof inspections</textarea>
+<p class="hint">Separate services with commas.</p>
+<div class="row"><div><label for="open">Opens</label><input id="open" type="time" value="08:00"></div><div><label for="close">Closes</label><input id="close" type="time" value="18:00"></div></div>
+<label for="days">Open days</label><input id="days" value="Mo,Tu,We,Th,Fr,Sa">
+<p class="hint">Use Mo, Tu, We, Th, Fr, Sa, Su separated by commas.</p>
+<label for="same">Profile links</label><textarea id="same" placeholder="Google Business Profile, Facebook, Yelp, one per line"></textarea>
+</form>
+<section class="card">
+<div class="bar"><button type="button" id="copy">Copy code</button><span id="msg" class="hint" aria-live="polite"></span></div>
+<pre id="out"></pre>
+<p class="hint">Paste this into the &lt;head&gt; of your homepage, then check it with Google's <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Rich Results Test</a> or the <a href="https://validator.schema.org/" target="_blank" rel="noopener">Schema Markup Validator</a>. Only include details that match what's on your page and your Google Business Profile.</p>
+<p class="hint">New to structured data? Read the <a href="https://buildboosters.com/contractor-marketing-glossary#schema-markup">plain-English definition of schema markup</a> and see what else a contractor site needs on the <a href="https://buildboosters.com/contractor-website-checklist">contractor website checklist</a>.</p>
+</section>
+</main>
+<footer class="w">MIT licensed. <a href="https://github.com/BuildBoostersHQ/ContractorSchemaGenerator">Source on GitHub</a> &middot; Made by <a href="https://buildboosters.com">Build Boosters</a>, websites and follow-up systems for contractors &middot; <a href="https://buildboosters.com/google-maps-ranking-contractors">How contractors rank on Google Maps</a></footer>
+<script src="generator.js"></script>
+</body>
+</html>
